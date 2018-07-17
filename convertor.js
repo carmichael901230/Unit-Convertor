@@ -22,9 +22,9 @@ function swapTab(choice) {
 // a silly function to convert between length units
 // hope I can come up with a better one
 function calcLength() {
-  var fromSel = parseInt(document.getElementById("from").value);
-  var toSel = parseInt(document.getElementById("to").value);
-  var input = parseFloat(document.getElementById("input").value);
+  var fromSel = parseInt(document.getElementById("fromLength").value);
+  var toSel = parseInt(document.getElementById("toLength").value);
+  var input = parseFloat(document.getElementById("inputLength").value);
   var output;
   // convert between same unit
   if (fromSel == toSel) {
@@ -167,14 +167,106 @@ function calcLength() {
       output = input/12;
   }
 
-  // avoid nan and undefined output
+  
   if (output >= 10000 || output <= 0.0001)
     output = parseFloat(output).toExponential();
+  // avoid nan and undefined output
   if (isNaN(output) || output == undefined)
     output = "";
-  document.getElementById("output").value = output;
+  document.getElementById("outputLength").value = output;
 }
 
 function calcWeight() {
-  
+	var fromSel = parseInt(document.getElementById("fromWeight").value);
+	var toSel = parseInt(document.getElementById("toWeight").value);
+	var input = parseFloat(document.getElementById("inputWeight").value);
+	var output;
+	// convert between same units
+	if (fromSel == toSel)
+		output = input;
+	// convert from mg
+	else if (fromSel == 0) {
+		if (toSel == 1)
+			output = input/1000;
+		else if (toSel == 2)
+			output = input/1e6;
+		else if (toSel == 3)
+			output = input/1e9;
+		else if (toSel == 4)
+			output = input*3.52739619495804e-5;
+		else if (toSel == 5)
+			output = input*2.20462262184878e-6;
+	}
+	// convert from g
+	else if (fromSel == 1) {
+		if (toSel == 0)
+			output = input*1000;
+		else if (toSel == 2)
+			output = input/1000;
+		else if (toSel == 3)
+			output = input/1e6;
+		else if (toSel == 4)
+			output = input*3.52739619495804e-2;
+		else if (toSel == 5)
+			output = input*2.20462262184878e-3;
+	}
+	// convert from kg
+	else if (fromSel == 2) {
+		if (toSel == 0)
+			output = input*1e6;
+		else if (toSel == 1)
+			output = input*1000;
+		else if (toSel == 3)
+			output = input/1e3;
+		else if (toSel == 4)
+			output = input*35.2739619495804;
+		else if (toSel == 5)
+			output = input*2.20462262184878;
+	}
+	// convert from ton
+	else if (fromSel == 3) {
+		if (toSel == 0)
+			output = input*1e9;
+		else if (toSel == 1)
+			output = input*1e6;
+		else if (toSel == 2)
+			output = input*1e3;
+		else if (toSel == 4)
+			output = input*35273.9619495804;
+		else if (toSel == 5)
+			output = input*2204.62262184878;
+	}
+	// convert from ounce
+	else if (fromSel == 4) {
+		if (toSel == 0)
+			output = input*28349.523125;
+		else if (toSel == 1)
+			output = input*28.349523125;
+		else if (toSel == 2)
+			output = input*0.028349523125;
+		else if (toSel == 3)
+			output = input*2.8349523125e-5;
+		else if (toSel == 5)
+			output = input*0.0625;
+	}
+	// convert from pound
+	else if (fromSel == 5) {
+		if (toSel == 0)
+			output = input*453592.37;
+		else if (toSel == 1)
+			output = input*453.59237;
+		else if (toSel == 2)
+			output = input*0.45359237;
+		else if (toSel == 3)
+			output = input*0.00045359237;
+		else if (toSel == 4)
+			output = input*16;
+	}
+	
+	if (output >= 10000 || output <= 0.0001)
+		output = parseFloat(output).toExponential();
+	// avoid nan and undefined output
+	if (isNaN(output) || output == undefined)
+		output = "";
+	document.getElementById("outputWeight").value = output;
 }

@@ -22,18 +22,18 @@
         <tr>
           <td>
             <form>
-              <input id="input" type="text" onkeyup="calcLength()" autofocus></input>
+              <input id="inputLength" type="text" onkeyup="calcLength()" autofocus></input>
             </form>
           </td>
           <td>
             <form>
-              <input id="output" type="text" readonly></input>
+              <input id="outputLength" type="text" readonly></input>
             </form>
           </td>
         </tr>
         <tr>
           <td>
-            <select id="from" size="8" onchange="calcLength()">
+            <select id="fromLength" size="8" onchange="calcLength()">
               <option value=0>Millimeter</option>
               <option value=1>Centimeter</option>
               <option value=2>Decimetre</option>
@@ -45,7 +45,7 @@
             </select>
           </td>
           <td>
-            <select id="to" size="8" onchange="calcLength()">
+            <select id="toLength" size="8" onchange="calcLength()">
               <option value=0>Millimeter</option>
               <option value=1>Centimeter</option>
               <option value=2>Decimetre</option>
@@ -69,34 +69,34 @@
         <tr>
           <td>
             <form>
-              <input id="input" type="text" onkeyup="calcWeight()" autofocus></input>
+              <input id="inputWeight" type="text" onkeyup="calcWeight()" autofocus></input>
             </form>
           </td>
           <td>
             <form>
-              <input id="output" type="text" readonly></input>
+              <input id="outputWeight" type="text" readonly></input>
             </form>
           </td>
         </tr>
         <tr>
           <td>
-            <select id="from" size="6" onchange="calcWeight()">
-              <option value=10>Milligram</option>
-              <option value=11>Gram</option>
-              <option value=12>Kilogram</option>
-              <option value=13>Ton</option>
-              <option value=14>Ounce</option>
-              <option value=15>Pound</option>
+            <select id="fromWeight" size="6" onchange="calcWeight()">
+              <option value=0>Milligram</option>
+              <option value=1>Gram</option>
+              <option value=2>Kilogram</option>
+              <option value=3>Ton</option>
+              <option value=4>Ounce</option>
+              <option value=5>Pound</option>
             </select>
           </td>
           <td>
-            <select id="to" size="6" onchange="calc()">
-              <option value=10>Milligram</option>
-              <option value=11>Gram</option>
-              <option value=12>Kilogram</option>
-              <option value=13>Ton</option>
-              <option value=14>Ounce</option>
-              <option value=15>Pound</option>
+            <select id="toWeight" size="6" onchange="calcWeight()">
+              <option value=0>Milligram</option>
+              <option value=1>Gram</option>
+              <option value=2>Kilogram</option>
+              <option value=3>Ton</option>
+              <option value=4>Ounce</option>
+              <option value=5>Pound</option>
             </select>
           </td>
         </tr>
