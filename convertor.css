@@ -1,0 +1,57 @@
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+.tab button {
+    background-color: #ccc;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    margin: 2px;
+    font-size: 17px;
+}
+.tab button:hover {
+    background-color: #666;
+    color: #000;
+}
+
+button[class="tabBtn active"] {
+    background-color: #000;
+    color: #ccc;
+}
+
+.tabbody {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+input[type=text] {
+    width: 100%;
+    padding: 10px 20px 10px 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    box-shadow: 2px 2px 3px #666;
+    outline: none;
+}
+input[type=text]:read-only {
+    width: 100%;
+    padding: 10px 20px 10px 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    box-shadow: 2px 2px 3px #666;
+    outline: none;
+    cursor: no-drop;
+}
+select{
+	width:100%;
+	padding:3px;
+	border: 1px solid #ccc;
+	box-shadow: 2px 2px 3px #666;
+	font-size: 16px;
+}

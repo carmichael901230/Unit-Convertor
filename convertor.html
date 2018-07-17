@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Unit Convetor</title>
+    <link href="convertor.css" rel="stylesheet" type="text/css" />
+    <script src="convertor.js"></script>
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tabBtn active" onclick="swapTab('length')">Length</button>
+      <button class="tabBtn" onclick="swapTab('weight')">Weight</button>
+    </div>
+
+    <div id="length" class="tabbody" style="display: block">
+      <table width="600" border="0" align="center" style="padding-top: 5px;">
+        <tr> 
+          <td><b>From:</b></td>
+          <td><b>To:</b></td>
+        </tr>
+        <tr>
+          <td>
+            <form>
+              <input id="input" type="text" onkeyup="calcLength()" autofocus></input>
+            </form>
+          </td>
+          <td>
+            <form>
+              <input id="output" type="text" readonly></input>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select id="from" size="8" onchange="calcLength()">
+              <option value=0>Millimeter</option>
+              <option value=1>Centimeter</option>
+              <option value=2>Decimetre</option>
+              <option value=3>Meter</option>
+              <option value=4>Kilometer</option>
+              <option value=5>Mile</option>
+              <option value=6>Foot</option>
+              <option value=7>Inch</option>
+            </select>
+          </td>
+          <td>
+            <select id="to" size="8" onchange="calcLength()">
+              <option value=0>Millimeter</option>
+              <option value=1>Centimeter</option>
+              <option value=2>Decimetre</option>
+              <option value=3>Meter</option>
+              <option value=4>Kilometer</option>
+              <option value=5>Mile</option>
+              <option value=6>Foot</option>
+              <option value=7>Inch</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="weight" class="tabbody" style="display: none">
+      <table width="600" border="0" align="center" style="padding-top: 5px;">
+        <tr> 
+          <td><b>From:</b></td>
+          <td><b>To:</b></td>
+        </tr>
+        <tr>
+          <td>
+            <form>
+              <input id="input" type="text" onkeyup="calcWeight()" autofocus></input>
+            </form>
+          </td>
+          <td>
+            <form>
+              <input id="output" type="text" readonly></input>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select id="from" size="6" onchange="calcWeight()">
+              <option value=10>Milligram</option>
+              <option value=11>Gram</option>
+              <option value=12>Kilogram</option>
+              <option value=13>Ton</option>
+              <option value=14>Ounce</option>
+              <option value=15>Pound</option>
+            </select>
+          </td>
+          <td>
+            <select id="to" size="6" onchange="calc()">
+              <option value=10>Milligram</option>
+              <option value=11>Gram</option>
+              <option value=12>Kilogram</option>
+              <option value=13>Ton</option>
+              <option value=14>Ounce</option>
+              <option value=15>Pound</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <p id="test"></p>
+  </body>
+</html>
