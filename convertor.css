@@ -1,6 +1,5 @@
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
     background-color: white;
 }
 .tab button {
@@ -26,7 +25,6 @@ button[class="tabBtn active"] {
 .tabbody {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
     border-top: none;
 }
 input[type=text] {

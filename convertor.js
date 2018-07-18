@@ -1,6 +1,7 @@
 function swapTab(choice) {
     var divArr = document.getElementsByClassName("tabbody");
     var btnArr = document.getElementsByTagName("button");
+	// "block" display choice and "none" display others
     for (let i=0; i<divArr.length; i++) {
       if (divArr[i].id == choice) {
         divArr[i].style.display = "block";
@@ -168,11 +169,16 @@ function calcLength() {
   }
 
   
-  if (output >= 10000 || output <= 0.0001)
-    output = parseFloat(output).toExponential();
+
   // avoid nan and undefined output
   if (isNaN(output) || output == undefined)
     output = "";
+  // formate long number
+  if (output.toString().length > 5)
+	output = parseFloat(output).toPrecision(5);
+  // formate huge | tiny number
+  if (output >= 10000 || output <= 0.0001)
+    output = parseFloat(output).toExponential();
   document.getElementById("outputLength").value = output;
 }
 
@@ -263,10 +269,14 @@ function calcWeight() {
 			output = input*16;
 	}
 	
-	if (output >= 10000 || output <= 0.0001)
-		output = parseFloat(output).toExponential();
 	// avoid nan and undefined output
 	if (isNaN(output) || output == undefined)
 		output = "";
+	// formate long number
+	if (output.toString().length > 5)
+		output = parseFloat(output).toPrecision(5);
+	// exponent huge | tiny number
+	if (parseFloat(output) >= 10000 || parseFloat(output) <= 0.0001)
+		output = parseFloat(output).toExponential();
 	document.getElementById("outputWeight").value = output;
 }
