@@ -21,262 +21,110 @@ function swapTab(choice) {
   }
 
 // a silly function to convert between length units
-// hope I can come up with a better one
+// hope I can come up with a better algorithm
 function calcLength() {
-  var fromSel = parseInt(document.getElementById("fromLength").value);
-  var toSel = parseInt(document.getElementById("toLength").value);
-  var input = parseFloat(document.getElementById("inputLength").value);
-  var output;
+  let fromSel = parseInt(document.getElementById("fromLength").value);
+  let toSel = parseInt(document.getElementById("toLength").value);
+  let input = parseFloat(document.getElementById("inputLength").value);
+  let output = NaN;
   // convert between same unit
   if (fromSel == toSel) {
     output = input;
   }
-  // convert from mm
-  else if (fromSel == 0) {
-    if (toSel == 1)
-      output = input/10;
-    else if (toSel == 2)
-      output = input/100;
-    else if (toSel == 3)
-      output = input/1000;
-    else if (toSel == 4)
-      output = input/1000000;
-    else if (toSel == 5)
-      output = input*6.213711922373e-6;
-    else if (toSel == 6)
-      output = input*0.003280839895013123;
-    else if (toSel == 7)
-      output = input*0.0393700787401574848;
+  else {
+    let convertToMeter = [1, 0.001,100,1000,1000000,1000000000,0.0006213689,
+                        1.0936132983,3.280839895,39.37007874];
+    let temp = input / convertToMeter[fromSel];
+    output = temp * convertToMeter[toSel]
   }
-  // convert from cm
-  else if  (fromSel == 1) {
-    if (toSel == 0)
-      output = input*10;
-    else if (toSel == 2)
-      output = input/10;
-    else if (toSel == 3)
-      output = input/100;
-    else if (toSel == 4)
-      output = input/100000;
-    else if (toSel == 5)
-      output = input*6.2137119223736213711922373e-6;
-    else if (toSel == 6) 
-      output = input*0.03280839895013123;
-    else if (toSel == 7)
-      output = input*0.393700787401574848;
-  }
-  // convert from dm
-  else if (fromSel == 2) {
-    if (toSel == 0)
-      output = input*100;
-    else if (toSel == 1)
-      output = input*10;
-    else if (toSel == 3)
-      output = input/10;
-    else if (toSel == 4)
-      output = input/1e4;
-    else if (toSel == 5)
-      output = input*6.213711922373e-5;
-    else if (toSel == 6) 
-      output = input*0.3280839895013123;
-    else if (toSel == 7)
-      output = input*3.93700787401574848;    
-  }
-  // convert from m
-  else if (fromSel == 3) {
-    if (toSel == 0)
-      output = input*1000;
-    else if (toSel == 1)
-      output = input*100;
-    else if (toSel == 2)
-      output = input*10;
-    else if (toSel == 4)
-      output = input/1000;
-    else if (toSel == 5)
-      output = input*6.213711922373e-4;
-    else if (toSel == 6) 
-      output = input*3.280839895013123;
-    else if (toSel == 7)
-      output = input*39.3700787401574848;   
-  }
-  // convert from km
-  else if (fromSel == 4) {
-    if (toSel == 0)
-      output = input*1000000;
-    else if (toSel == 1)
-      output = input*100000;
-    else if (toSel == 2)
-      output = input*10000;
-    else if (toSel == 3)
-      output = input*1000;
-    else if (toSel == 5)
-      output = input*0.6213711922373;
-    else if (toSel == 6) 
-      output = input*3280.839895013123;
-    else if (toSel == 7)
-      output = input*39370.0787401574848;
-  }
-  // convert from mi
-  else if (fromSel == 5) {
-    if (toSel == 0)
-      output = input*1609344;
-    else if (toSel == 1)
-      output = input*160934.4;
-    else if (toSel == 2)
-      output = input*16093.44;
-    else if (toSel == 3)
-      output = input*1609.344;
-    else if (toSel == 4)
-      output = input*1.609344;
-    else if (toSel == 6) 
-      output = input*5280;
-    else if (toSel == 7)
-      output = input*63360;
-  }
-  // convert from ft
-  else if (fromSel == 6) {
-    if (toSel == 0)
-      output = input*304.8;
-    else if (toSel == 1)
-      output = input*30.48;
-    else if (toSel == 2)
-      output = input*3.048;
-    else if (toSel == 3)
-      output = input*0.3048;
-    else if (toSel == 4)
-      output = input*3.048e-4;
-    else if (toSel == 5) 
-      output = input*1.89394e-4;
-    else if (toSel == 7)
-      output = input*12;
-  }
-  // convert from in
-  else if (fromSel == 7) {
-    if (toSel == 0)
-      output = input*25.4;
-    else if (toSel == 1)
-      output = input*2.54;
-    else if (toSel == 2)
-      output = input*0.254;
-    else if (toSel == 3)
-      output = input*0.0254;
-    else if (toSel == 4)
-      output = input*2.54e-5;
-    else if (toSel == 5) 
-      output = input*1.5783e-5;
-    else if (toSel == 6)
-      output = input/12;
-  }
-
-  
-
-  // avoid nan and undefined output
-  if (isNaN(output) || output == undefined)
-    output = "";
   // formate long number
   if (output.toString().length > 5)
 	output = parseFloat(output).toPrecision(5);
   // formate huge | tiny number
   if (output >= 10000 || output <= 0.0001)
     output = parseFloat(output).toExponential();
+    // avoid nan and undefined output
+  if (isNaN(output) || output == undefined)
+    output = "";
   document.getElementById("outputLength").value = output;
 }
 
 function calcWeight() {
-	var fromSel = parseInt(document.getElementById("fromWeight").value);
-	var toSel = parseInt(document.getElementById("toWeight").value);
-	var input = parseFloat(document.getElementById("inputWeight").value);
-	var output;
+	let fromSel = parseInt(document.getElementById("fromWeight").value);
+	let toSel = parseInt(document.getElementById("toWeight").value);
+	let input = parseFloat(document.getElementById("inputWeight").value);
+	let output = NaN;
 	// convert between same units
 	if (fromSel == toSel)
-		output = input;
-	// convert from mg
-	else if (fromSel == 0) {
-		if (toSel == 1)
-			output = input/1000;
-		else if (toSel == 2)
-			output = input/1e6;
-		else if (toSel == 3)
-			output = input/1e9;
-		else if (toSel == 4)
-			output = input*3.52739619495804e-5;
-		else if (toSel == 5)
-			output = input*2.20462262184878e-6;
-	}
-	// convert from g
-	else if (fromSel == 1) {
-		if (toSel == 0)
-			output = input*1000;
-		else if (toSel == 2)
-			output = input/1000;
-		else if (toSel == 3)
-			output = input/1e6;
-		else if (toSel == 4)
-			output = input*3.52739619495804e-2;
-		else if (toSel == 5)
-			output = input*2.20462262184878e-3;
-	}
-	// convert from kg
-	else if (fromSel == 2) {
-		if (toSel == 0)
-			output = input*1e6;
-		else if (toSel == 1)
-			output = input*1000;
-		else if (toSel == 3)
-			output = input/1e3;
-		else if (toSel == 4)
-			output = input*35.2739619495804;
-		else if (toSel == 5)
-			output = input*2.20462262184878;
-	}
-	// convert from ton
-	else if (fromSel == 3) {
-		if (toSel == 0)
-			output = input*1e9;
-		else if (toSel == 1)
-			output = input*1e6;
-		else if (toSel == 2)
-			output = input*1e3;
-		else if (toSel == 4)
-			output = input*35273.9619495804;
-		else if (toSel == 5)
-			output = input*2204.62262184878;
-	}
-	// convert from ounce
-	else if (fromSel == 4) {
-		if (toSel == 0)
-			output = input*28349.523125;
-		else if (toSel == 1)
-			output = input*28.349523125;
-		else if (toSel == 2)
-			output = input*0.028349523125;
-		else if (toSel == 3)
-			output = input*2.8349523125e-5;
-		else if (toSel == 5)
-			output = input*0.0625;
-	}
-	// convert from pound
-	else if (fromSel == 5) {
-		if (toSel == 0)
-			output = input*453592.37;
-		else if (toSel == 1)
-			output = input*453.59237;
-		else if (toSel == 2)
-			output = input*0.45359237;
-		else if (toSel == 3)
-			output = input*0.00045359237;
-		else if (toSel == 4)
-			output = input*16;
-	}
+    output = input;
+  else {
+    let convertToKG = [1, 1000,1000000,0.001,35.273990723,2.2046244202];
+    let temp = input / convertToKG[fromSel];
+    output = temp * convertToKG[toSel];
+  }
 	
-	// avoid nan and undefined output
-	if (isNaN(output) || output == undefined)
-		output = "";
 	// formate long number
 	if (output.toString().length > 5)
 		output = parseFloat(output).toPrecision(5);
 	// exponent huge | tiny number
 	if (parseFloat(output) >= 10000 || parseFloat(output) <= 0.0001)
-		output = parseFloat(output).toExponential();
+    output = parseFloat(output).toExponential();
+  // avoid nan and undefined output
+	if (isNaN(output) || output == undefined)
+    output = "";
 	document.getElementById("outputWeight").value = output;
+}
+
+function calcVolume() {
+  let fromSel = parseInt(document.getElementById("fromVolume").value);
+  let toSel = parseInt(document.getElementById("toVolume").value);
+  let input = parseFloat(document.getElementById("inputVolume").value);
+  let output;
+  // convert between same units
+	if (fromSel == toSel)
+    output = input;
+  else {
+    // Convert everything to cubic meter, then convert to target unit
+    let convertToM3 = [1, 1000000,1000000000,1000,1000000,264.17217686,1056.6887074,2113.3774149,4226.7548297,67628.077276,202884.23183];
+    let temp = input / convertToM3[fromSel];
+    output = temp * convertToM3[toSel];
+    
+  }
+  // formate long number
+	if (output.toString().length > 5)
+  output = parseFloat(output).toPrecision(5);
+  // exponent huge | tiny number
+  if (parseFloat(output) >= 10000 || parseFloat(output) <= 0.0001)
+    output = parseFloat(output).toExponential();
+  // avoid nan and undefined output
+  if (isNaN(output) || output == undefined)
+    output = "";
+  document.getElementById("outputVolume").value = output;
+}
+
+function calcArea() {
+  let fromSel = parseInt(document.getElementById("fromArea").value);
+  let toSel = parseInt(document.getElementById("toArea").value);
+  let input = parseFloat(document.getElementById("inputArea").value);
+  let output;
+  // convert between same units
+	if (fromSel == toSel)
+    output = input;
+  else {
+    // Convert everything to cubic meter, then convert to target unit
+    let convertToM2 = [1, 10000,1000000,0.0001,3.861018768e-7,1.1959900463,10.763910417,
+                      1550.0031,0.0002471054];
+    let temp = input / convertToM2[fromSel];
+    output = temp * convertToM2[toSel];
+  }
+  // formate long number
+	if (output.toString().length > 5)
+  output = parseFloat(output).toPrecision(5);
+  // exponent huge | tiny number
+  if (parseFloat(output) >= 10000 || parseFloat(output) <= 0.0001)
+    output = parseFloat(output).toExponential();
+  // avoid nan and undefined output
+  if (isNaN(output) || output == undefined)
+    output = "";
+  document.getElementById("outputArea").value = output;
 }

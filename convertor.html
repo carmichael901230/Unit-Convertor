@@ -12,6 +12,8 @@
     <div class="tab">
       <button class="tabBtn active" onclick="swapTab('length')">Length</button>
       <button class="tabBtn" onclick="swapTab('weight')">Weight</button>
+	    <button class="tabBtn" onclick="swapTab('volume')">Volume</button>
+      <button class="tabBtn" style="width:80px" onclick="swapTab('area')">Area</button> <!--make area btn little wider-->
     </div>
 
     <div id="length" class="tabbody" style="display: block">
@@ -34,27 +36,31 @@
         </tr>
         <tr>
           <td>
-            <select id="fromLength" size="8" onchange="calcLength()">
-              <option value=0>Millimeter</option>
-              <option value=1>Centimeter</option>
-              <option value=2>Decimetre</option>
-              <option value=3>Meter</option>
-              <option value=4>Kilometer</option>
-              <option value=5>Mile</option>
-              <option value=6>Foot</option>
-              <option value=7>Inch</option>
+            <select id="fromLength" size="10" onchange="calcLength()">
+              <option value=0>Meter</option>
+              <option value=1>Kilometer</option>
+              <option value=2>Centimeter</option>
+              <option value=3>Millimeter</option>
+              <option value=4>Micrometer</option>
+              <option value=5>Nanometer</option>
+              <option value=6>Mile</option>
+              <option value=7>Yard</option>
+              <option value=8>Foot</option>
+              <option value=9>Inch</option>
             </select>
           </td>
           <td>
-            <select id="toLength" size="8" onchange="calcLength()">
-              <option value=0>Millimeter</option>
-              <option value=1>Centimeter</option>
-              <option value=2>Decimetre</option>
-              <option value=3>Meter</option>
-              <option value=4>Kilometer</option>
-              <option value=5>Mile</option>
-              <option value=6>Foot</option>
-              <option value=7>Inch</option>
+            <select id="toLength" size="10" onchange="calcLength()">
+              <option value=0>Meter</option>
+              <option value=1>Kilometer</option>
+              <option value=2>Centimeter</option>
+              <option value=3>Millimeter</option>
+              <option value=4>Micrometer</option>
+              <option value=5>Nanometer</option>
+              <option value=6>Mile</option>
+              <option value=7>Yard</option>
+              <option value=8>Foot</option>
+              <option value=9>Inch</option>
             </select>
           </td>
         </tr>
@@ -82,9 +88,9 @@
         <tr>
           <td>
             <select id="fromWeight" size="6" onchange="calcWeight()">
-              <option value=0>Milligram</option>
+              <option value=0>Kilogram</option>
               <option value=1>Gram</option>
-              <option value=2>Kilogram</option>
+              <option value=2>Milligram</option>
               <option value=3>Ton</option>
               <option value=4>Ounce</option>
               <option value=5>Pound</option>
@@ -92,12 +98,114 @@
           </td>
           <td>
             <select id="toWeight" size="6" onchange="calcWeight()">
-              <option value=0>Milligram</option>
+              <option value=0>Kilogram</option>
               <option value=1>Gram</option>
-              <option value=2>Kilogram</option>
+              <option value=2>Milligram</option>
               <option value=3>Ton</option>
               <option value=4>Ounce</option>
               <option value=5>Pound</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+	
+	  <div id="volume" class="tabbody" style="display: none">
+      <table width="600" border="0" align="center" style="padding-top: 5px;">
+        <tr> 
+          <td><b>From:</b></td>
+          <td><b>To:</b></td>
+        </tr>
+        <tr>
+          <td>
+            <form>
+              <input id="inputVolume" type="text" onkeyup="calcVolume()" autofocus></input>
+            </form>
+          </td>
+          <td>
+            <form>
+              <input id="outputVolume" type="text" readonly></input>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select id="fromVolume" size="11" onchange="calcVolume()">
+              <option value=0>Cubic Meter</option>
+              <option value=1>Cubic Centimeter</option>
+              <option value=2>Cubic Millimeter</option>
+              <option value=3>Liter(L)</option>
+              <option value=4>Mililiter(mL)</option>
+              <option value=5>Gallon(US)</option>
+              <option value=6>Quart(US)</option>
+              <option value=7>Pint(US)</option>
+              <option value=8>Cup(US)</option>
+              <option value=9>Table Spoon(US)</option>
+              <option value=10>Tea Spoon(US)</option>
+            </select>
+          </td>
+          <td>
+            <select id="toVolume" size="11" onchange="calcVolume()">
+              <option value=0>Cubic Meter</option>
+              <option value=1>Cubic Centimeter</option>
+              <option value=2>Cubic Millimeter</option>
+              <option value=3>Liter(L)</option>
+              <option value=4>Mililiter(mL)</option>
+              <option value=5>Gallon(US)</option>
+              <option value=6>Quart(US)</option>
+              <option value=7>Pint(US)</option>
+              <option value=8>Cup(US)</option>
+              <option value=9>Table Spoon(US)</option>
+              <option value=10>Tea Spoon(US)</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  	<div id="area" class="tabbody" style="display: none">
+      <table width="600" border="0" align="center" style="padding-top: 5px;">
+        <tr> 
+          <td><b>From:</b></td>
+          <td><b>To:</b></td>
+        </tr>
+        <tr>
+          <td>
+            <form>
+              <input id="inputArea" type="text" onkeyup="calcArea()" autofocus></input>
+            </form>
+          </td>
+          <td>
+            <form>
+              <input id="outputArea" type="text" readonly></input>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select id="fromArea" size="9" onchange="calcArea()">
+              <option value=0>Square Meter</option>
+              <option value=1>Square Centimeter</option>
+              <option value=2>Square Millimeter</option>
+              <option value=3>Hectare</option>
+              <option value=4>Square Mile</option>
+              <option value=5>Square Yard</option>
+              <option value=6>Square Foot</option>
+              <option value=7>Square Inch</option>
+              <option value=8>Acre</option>
+            </select>
+          </td>
+          <td>
+            <select id="toArea" size="9" onchange="calcArea()">
+              <option value=0>Square Meter</option>
+              <option value=1>Square Centimeter</option>
+              <option value=2>Square Millimeter</option>
+              <option value=3>Hectare</option>
+              <option value=4>Square Mile</option>
+              <option value=5>Square Yard</option>
+              <option value=6>Square Foot</option>
+              <option value=7>Square Inch</option>
+              <option value=8>Acre</option>
             </select>
           </td>
         </tr>
